@@ -11,6 +11,11 @@ public class EConsumerService {
 
     @ServiceBusListener(destination = QUEUE_NAME)
     public void handleMessageFromServiceBus(String message) {
-        System.out.printf("Consume message: %s%n", message);
+        System.out.printf("Consumed message: %s%n", message);
+
+        MailSender mail = new MailSender();
+        mail.sendMail(message);
+
+        
     }
 }
